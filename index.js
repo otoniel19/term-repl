@@ -39,13 +39,16 @@ class termRepl extends utils {
         this.eval();
         process.argv = "";
       }
-      this.ask(this.nameShow, (ask) => {
-        global.args = ask;
-        this.on("keypress", (k) => this.emit("keypress", k));
-        this.emit("line", ask);
-        this.eval();
-        this.start();
-      });
+      this.ask(
+        this.nameShow,
+        (ask) => {
+          global.args = ask;
+          this.emit("line", ask);
+          this.eval();
+          this.start();
+        },
+        (key) => this.emit("keypress", key)
+      );
     }
   }
   close() {
