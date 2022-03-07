@@ -1,0 +1,20 @@
+{
+  "name": "@otoniel19/term-repl",
+  "version": "1.0.0",
+  "description": "term-repl is a repl 'Read-Eval-Print loop' for node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/lodash": "^4.14.179",
+    "@types/node": "^17.0.19"
+  },
+  "dependencies": {
+    "@otoniel19/super-prompt": "^1.0.0",
+    "lodash": "^4.17.21"
+  }
+}
