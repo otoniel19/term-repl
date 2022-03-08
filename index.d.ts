@@ -1,14 +1,18 @@
 export = termRepl;
+
+interface termReplOpts {
+  name: string;
+  message: string;
+  title: string;
+  historyFile: string;
+}
+
 declare class termRepl extends utils {
-  constructor(opts: {
-    name: string;
-    title: string;
-    message: string;
-    historyFile: string;
-  });
+  constructor(opts: termReplOpts);
   nameShow: string;
   originalName: string;
-  hisyory: string;
+  history: string;
+  msg: string;
   Commands: (
     | {
         name: string;

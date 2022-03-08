@@ -31,27 +31,24 @@ session.start(); // start the repl
 
 - :warning: we recommend add commands before start
 - first we show to you the class methods and params
+- file [index.d.ts](./index.d.ts)
 
 ```ts
-interface termReplOptions {
-  /**
-   * the name of question
-   */
-  title: string;
-  /**
-   * the name of program
-   */
+export = termRepl;
+
+interface termReplOpts {
   name: string;
-  /**
-   * the message to show when repl start
-   */
   message: string;
+  title: string;
+  historyFile: string;
 }
 
 declare class termRepl extends utils {
-  constructor(opts: termReplOptions);
+  constructor(opts: termReplOpts);
   nameShow: string;
   originalName: string;
+  history: string;
+  msg: string;
   Commands: (
     | {
         name: string;
@@ -87,11 +84,9 @@ declare class termRepl extends utils {
   ): Error | undefined;
   eval(): void;
   commandArgs: any;
-  system(
-    command: string,
-    silent: boolean
-  ): (command: string, silent: boolean) => any;
+  system(command: any, silent: any): (command: any, silent: any) => any;
 }
+import utils = require("./utils");
 ```
 
 # adding a command

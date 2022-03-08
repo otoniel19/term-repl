@@ -14,7 +14,7 @@ class termRepl extends utils {
     this.nameShow = title;
     this.originalName = name;
     this.history = historyFile;
-    this.log(message.trim());
+    this.msg = message;
     this.Commands = [
       {
         name: ".exit",
@@ -31,6 +31,7 @@ class termRepl extends utils {
         action: (o) => console.clear()
       }
     ];
+    this.log(message.trim());
   }
   async start() {
     this.isOpen = true;
@@ -39,6 +40,8 @@ class termRepl extends utils {
         global.args = process.argv;
         this.emit("line", process.argv);
         this.eval();
+        //save history
+        fs.appendFileSync(this.history, process.argv + "\n");
         process.argv = "";
       }
       this.ask(
@@ -56,6 +59,7 @@ class termRepl extends utils {
   }
   close() {
     this.isOpen = false;
+    this.emit("close");
     this.log(`${this.originalName} closed`);
     process.exit(1);
   }
