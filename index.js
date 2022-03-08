@@ -1,6 +1,7 @@
 const utils = require("./utils");
 const _ = require("lodash");
 const { log } = require("console");
+const fs = require("fs");
 
 process.argv.shift();
 process.argv.shift();
@@ -9,9 +10,10 @@ process.argv = process.argv.join(" ");
 class termRepl extends utils {
   constructor(opts) {
     super();
-    const { title, name, message } = opts;
+    const { title, historyFile, name, message } = opts;
     this.nameShow = title;
     this.originalName = name;
+    this.history = historyFile;
     this.log(message.trim());
     this.Commands = [
       {
@@ -40,6 +42,7 @@ class termRepl extends utils {
         process.argv = "";
       }
       this.ask(
+        this.history,
         this.nameShow,
         (ask) => {
           global.args = ask;

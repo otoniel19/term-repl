@@ -1,24 +1,14 @@
 export = termRepl;
-
-interface termReplOptions {
-  /**
-   * the name of question
-   */
-  title: string;
-  /**
-   * the name of program
-   */
-  name: string;
-  /**
-   * the message to show when repl start
-   */
-  message: string;
-}
-
 declare class termRepl extends utils {
-  constructor(opts: termReplOptions);
+  constructor(opts: {
+    name: string;
+    title: string;
+    message: string;
+    historyFile: string;
+  });
   nameShow: string;
   originalName: string;
+  hisyory: string;
   Commands: (
     | {
         name: string;
@@ -54,9 +44,6 @@ declare class termRepl extends utils {
   ): Error | undefined;
   eval(): void;
   commandArgs: any;
-  system(
-    command: string,
-    silent: boolean
-  ): (command: string, silent: boolean) => any;
+  system(command: any, silent: any): (command: any, silent: any) => any;
 }
 import utils = require("./utils");

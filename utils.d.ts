@@ -1,7 +1,6 @@
 export = utils;
-declare class utils extends EventEmitter {
-  constructor();
-  ask(name: string): void;
-  log(...data: any[]): void;
+declare class utils {
+    ask(history: any, name: any, cb: any, keypress: any): void;
+    log(...data: any[]): void;
+    get rl(): any;
 }
-import { EventEmitter } from "events";
